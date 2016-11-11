@@ -60,5 +60,12 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": null
-    }
+    },
+    
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:torkhani/DoctoubibModelsBundle.git"
+        }
+    ]
 }

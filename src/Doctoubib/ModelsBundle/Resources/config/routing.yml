@@ -1,3 +1,0 @@
-doctoubib_models_homepage:
-    path:     /
-    defaults: { _controller: DoctoubibModelsBundle:Default:index }

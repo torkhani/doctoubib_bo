@@ -3,15 +3,30 @@ services:
         class: AdminBundle\Admin\DoctorAdmin
         arguments: [~, Doctoubib\ModelsBundle\Entity\Doctor, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Doctor }
+            - { name: sonata.admin, manager_type: orm, label: Doctor, group: Praticien }
     admin.doctor.speciality:
         class: AdminBundle\Admin\SpecialityAdmin
         arguments: [~, Doctoubib\ModelsBundle\Entity\Speciality, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Doctor speciality }
+            - { name: sonata.admin, manager_type: orm, label: Doctor speciality, group: Praticien }
 
     admin.doctor.inasurance:
         class: AdminBundle\Admin\InsuranceAdmin
         arguments: [~, Doctoubib\ModelsBundle\Entity\Insurance, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Doctor insurance }
+            - { name: sonata.admin, manager_type: orm, label: Doctor insurance, group: Praticien }
+
+
+
+    admin.config.region:
+        class: AdminBundle\Admin\RegionAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\Region, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Region, group: config }
+
+
+    admin.config.city:
+        class: AdminBundle\Admin\CityAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\City, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: City, group: config }
