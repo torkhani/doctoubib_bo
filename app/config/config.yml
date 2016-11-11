@@ -75,3 +75,9 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+sonata_admin:
+    title:          'Doctoubib'
+    title_logo:     bundles/admin/img/logo_pacifico.png
+    templates:
+        layout:    'AdminBundle::standard_layout.html.twig'

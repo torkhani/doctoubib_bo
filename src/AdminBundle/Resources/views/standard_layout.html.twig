@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .logo {
+            background-color: #0596de !important;
+            color: #ffffff !important;
+        }
+    </style>
+{% endblock %}
+
+{% block side_bar_after_nav_content %}
+    <a href="https://doctoubib.com" rel="noreferrer" target="_blank">Doctoubib</a>
+{% endblock %}
