@@ -1,0 +1,4 @@
+services:
+#    doctoubib_models.example:
+#        class: Doctoubib\ModelsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

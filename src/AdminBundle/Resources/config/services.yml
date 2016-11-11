@@ -1,0 +1,17 @@
+services:
+    admin.doctor:
+        class: AdminBundle\Admin\DoctorAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\Doctor, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Doctor }
+    admin.doctor.speciality:
+        class: AdminBundle\Admin\SpecialityAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\Speciality, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Doctor speciality }
+
+    admin.doctor.inasurance:
+        class: AdminBundle\Admin\InsuranceAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\Insurance, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Doctor insurance }
