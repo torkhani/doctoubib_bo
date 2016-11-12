@@ -13,21 +13,43 @@ class DoctorAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Informations', array('class' => 'col-md-6'))
-                    ->add('firstname', 'text')
+            ->with('Informations personnelles', array('class' => 'col-md-4'))
+                    ->add('civility', 'choice', array(
+                        'choices' => array(
+                            'Mr.' => 'mr',
+                            'Mme.' => 'mme'
+                        ),
+                        'expanded' => true,
+                        'data' => 'mr'
+                    ))
                     ->add('lastname')
                     ->add('email')
-                    ->add('speciality')
                     ->add('description')
-                    ->add('formation')
-                    ->add('insurance')
             ->end()
-            ->with('Meta data', array('class' => 'col-md-6'))
+
+            ->with('Informations professionelle', array('class' => 'col-md-4'))
+            ->add('speciality')
+            ->add('formation')
+            ->add('skills')
+            ->add('hospitalCareer')
+            ->end()
+
+            ->with('Informations d\'accès', array('class' => 'col-md-4'))
                 ->add('adress')
                 ->add('zipcode')
                 ->add('city')
                 ->add('phoneNumber')
                 ->add('officePhoneNumber')
+            ->end()
+
+            ->with('Autres informations', array('class' => 'col-md-4'))
+            ->add('insurance')
+            ->end()
+
+            ->with('Consutation', array('class' => 'col-md-4'))
+            //->add('consultations', 'sonata_type_model')
+            ->add('consultationPriceMin')
+            ->add('consultationPriceMax')
             ->end()
         ;
 

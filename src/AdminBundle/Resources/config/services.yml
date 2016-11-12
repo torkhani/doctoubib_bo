@@ -16,6 +16,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Doctor insurance, group: Praticien }
 
+    admin.doctor.consultations:
+        class: AdminBundle\Admin\DoctorConsultationAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\DoctorConsultation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Doctor insurance, group: Praticien }
+
 
 
     admin.config.region:
