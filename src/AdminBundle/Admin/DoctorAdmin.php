@@ -22,6 +22,7 @@ class DoctorAdmin extends AbstractAdmin
                         'expanded' => true,
                         'data' => 'mr'
                     ))
+                    ->add('firstname')
                     ->add('lastname')
                     ->add('email')
                     ->add('description')
