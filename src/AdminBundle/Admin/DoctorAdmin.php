@@ -37,7 +37,7 @@ class DoctorAdmin extends AbstractAdmin
             ->with('Informations d\'accès', array('class' => 'col-md-4'))
                 ->add('adress')
                 ->add('zipcode')
-                ->add('city')
+                ->add('region')
                 ->add('phoneNumber')
                 ->add('officePhoneNumber')
             ->end()

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="292deb00-1819-47c2-9a33-69809dd94072" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AdminBundle/Admin/DoctorConsultationAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdminBundle/Admin/DoctorAdmin.php" afterPath="$PROJECT_DIR$/src/AdminBundle/Admin/DoctorAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdminBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/AdminBundle/Resources/config/services.yml" />
     </list>
     <ignored path="doctor_bo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +27,8 @@
       <file leaf-file-name="DoctorAdmin.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AdminBundle/Admin/DoctorAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="440">
+              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -40,8 +37,8 @@
       <file leaf-file-name="Doctor.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/torkhani/DoctoubibModelsBundle/Doctoubib/ModelsBundle/Entity/Doctor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="69" column="63" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
+            <state relative-caret-position="308">
+              <caret line="112" column="12" selection-start-line="112" selection-start-column="12" selection-end-line="112" selection-end-column="12" />
               <folding>
                 <element signature="e#49#97#0#PHP" expanded="true" />
               </folding>
@@ -419,12 +416,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1478854888038</updated>
-      <workItem from="1478854889235" duration="18319000" />
+      <workItem from="1478854889235" duration="19030000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18319000" />
+    <option name="totallyTimeSpent" value="19030000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -687,8 +684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/torkhani/DoctoubibModelsBundle/Doctoubib/ModelsBundle/Entity/Doctor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="69" column="63" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
+        <state relative-caret-position="308">
+          <caret line="112" column="12" selection-start-line="112" selection-start-column="12" selection-end-line="112" selection-end-column="12" />
           <folding>
             <element signature="e#49#97#0#PHP" expanded="true" />
           </folding>
@@ -697,8 +694,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminBundle/Admin/DoctorAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="440">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
           <folding />
         </state>
       </provider>
