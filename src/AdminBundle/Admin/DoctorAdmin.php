@@ -61,7 +61,7 @@ class DoctorAdmin extends AbstractAdmin
         $datagridMapper->add('firstname');
         $datagridMapper->add('speciality');
         $datagridMapper->add('insurance');
-        $datagridMapper->add('city');
+        $datagridMapper->add('region');
         $datagridMapper->add('zipcode');
 
     }
@@ -72,7 +72,7 @@ class DoctorAdmin extends AbstractAdmin
         $listMapper->addIdentifier('lastname');
         $listMapper->addIdentifier('email');
         $listMapper->addIdentifier('speciality');
-        $listMapper->addIdentifier('city');
+        $listMapper->addIdentifier('region');
         $listMapper->addIdentifier('zipCode');
         $listMapper->add('insurance');
     }
