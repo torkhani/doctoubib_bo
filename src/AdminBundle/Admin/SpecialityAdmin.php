@@ -14,17 +14,20 @@ class SpecialityAdmin extends AbstractAdmin
     {
         $formMapper->add('name', 'text');
         $formMapper->add('description');
+        $formMapper->add('slug', 'text');
         $formMapper->add('tags');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('name');
+        $datagridMapper->add('slug');
 
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('name');
+        $listMapper->add('slug');
     }
 }
