@@ -14,7 +14,7 @@ class SpecialityAdmin extends AbstractAdmin
     {
         $formMapper->add('name', 'text');
         $formMapper->add('description');
-        $formMapper->add('slug', 'text');
+        $formMapper->add('slug', 'text', array('required' => false));
         $formMapper->add('tags');
     }
 
