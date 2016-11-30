@@ -106,26 +106,29 @@ class WebScrapingCommand extends ContainerAwareCommand
                     if ($email = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->count()) {
                         $doctorInfo['email'] = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->text();
                     }
-                    if($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->count()) {
-                        $address = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->html();
-                        print_r($address);
-                        $region = substr(strrchr($address, "<br>"), 4);
-                        var_dump($region);die();
-                        $doctorInfo['address'] = $stuff;
+
+                    if ($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->count()) {
+                        $addressHtml = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->html();
+
+                        $address = explode('<br>', $addressHtml);
+                        $doctorInfo['address'] = serialize($address);
+                    } else {
+                        $doctorInfo['address'] = 'test';
                     }
 
-                    if($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->count()) {
-                        $doctorInfo['address'] = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->html();
+                    if ($doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->count()) {
+                        $descriptionHtml = $doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->html();
+
+                        $description = explode('<br>', $descriptionHtml);
+
+                        $doctorInfo['description'] = serialize($description);
                     }
 
-                    if($doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->count()) {
-                        $doctorInfo['description'] = $doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->html();
-                    }
-
+                    var_dump($doctorInfo['description'] );die();
                     $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
                     $doctor = new Doctor();
-                    $speciality = $em->getRepository('DoctoubibModelsBundle:Speciality')->find(1);
+                    $speciality = $em->getRepository('DoctoubibModelsBundle:Speciality')->find(3);
                     $region = $em->getRepository('DoctoubibModelsBundle:Region')->find(1);
                     $doctor->setFirstname($doctorInfo['name']);
                     $doctor->setLastname($doctorInfo['name']);
@@ -135,8 +138,9 @@ class WebScrapingCommand extends ContainerAwareCommand
                     $doctor->setEmail($doctorInfo['email']);
                     $doctor->setAdress($doctorInfo['address']);
                     $doctor->setRegion($region);
+                    $doctor->setCity();
                     $doctor->setPhoneNumber($doctorInfo['telephone']);
-                    $doctor->setSpeciality($speciality);
+                    $doctor->addSpeciality($speciality);
 
                     $em->persist($doctor);
                     $em->flush();

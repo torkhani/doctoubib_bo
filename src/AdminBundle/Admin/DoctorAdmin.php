@@ -40,6 +40,8 @@ class DoctorAdmin extends AbstractAdmin
                 ->add('zipcode')
                 ->add('region')
                 ->add('city')
+                ->add('longitude')
+                ->add('latitude')
                 ->add('phoneNumber')
                 ->add('officePhoneNumber')
             ->end()
