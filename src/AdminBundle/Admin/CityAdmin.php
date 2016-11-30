@@ -13,7 +13,6 @@ class CityAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('name', 'text');
-        $formMapper->add('slug');
         $formMapper->add('region');
         $formMapper->add('zipcode');
         $formMapper->add('latitude');
@@ -22,6 +21,7 @@ class CityAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $datagridMapper->add('region');
         $datagridMapper->add('name');
         $datagridMapper->add('zipcode');
     }
@@ -30,6 +30,7 @@ class CityAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('name');
         $listMapper->addIdentifier('slug');
+        $listMapper->add('region');
         $listMapper->addIdentifier('zipcode');
     }
 }

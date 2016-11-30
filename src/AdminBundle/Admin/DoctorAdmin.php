@@ -29,7 +29,7 @@ class DoctorAdmin extends AbstractAdmin
             ->end()
 
             ->with('Informations professionelle', array('class' => 'col-md-4'))
-            ->add('speciality')
+            ->add('specialities')
             ->add('formation')
             ->add('skills')
             ->add('hospitalCareer')
@@ -39,6 +39,7 @@ class DoctorAdmin extends AbstractAdmin
                 ->add('adress')
                 ->add('zipcode')
                 ->add('region')
+                ->add('city')
                 ->add('phoneNumber')
                 ->add('officePhoneNumber')
             ->end()
@@ -59,9 +60,9 @@ class DoctorAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('firstname');
-        $datagridMapper->add('speciality');
+        $datagridMapper->add('specialities');
         $datagridMapper->add('insurance');
-        $datagridMapper->add('region');
+        $datagridMapper->add('city');
         $datagridMapper->add('zipcode');
 
     }
@@ -71,8 +72,8 @@ class DoctorAdmin extends AbstractAdmin
         $listMapper->addIdentifier('firstname');
         $listMapper->addIdentifier('lastname');
         $listMapper->addIdentifier('email');
-        $listMapper->addIdentifier('speciality');
-        $listMapper->addIdentifier('region');
+        $listMapper->addIdentifier('specialities');
+        $listMapper->addIdentifier('city');
         $listMapper->addIdentifier('zipCode');
         $listMapper->add('insurance');
     }
