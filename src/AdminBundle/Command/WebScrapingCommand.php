@@ -31,6 +31,7 @@ class WebScrapingCommand extends ContainerAwareCommand
     {
 
         $this->client = new Client(array('base_uri' => 'http://www.med.tn'));
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
         $categories = [
             'cardiologue',
@@ -98,48 +99,66 @@ class WebScrapingCommand extends ContainerAwareCommand
 
                     $doctorCrawler = new Crawler($doctorPageContent->getContents());
 
-                    $doctorInfo['name'] = $doctorCrawler->filter('.pf-itempage-maindiv .docinfo h1')->text();
-                    if ($telephone = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=telephone]')->count()) {
-                        $doctorInfo['telephone'] = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=telephone]')->text();
+                    $doctor = new Doctor();
+
+                    if ($doctorCrawler->filter('.pf-itempage-maindiv .docinfo h1')->count()) {
+                        $name = $doctorCrawler->filter('.pf-itempage-maindiv .docinfo h1')->text();
+                        $doctor->setFirstname($name);
+                        $doctor->setLastname($name);
+                        $doctor->setCivility('M');
                     }
 
-                    if ($email = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->count()) {
-                        $doctorInfo['email'] = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->text();
+                    if ($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=telephone]')->count()) {
+                        $telephone = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=telephone]')->text();
+                        $doctor->setPhoneNumber($telephone);
                     }
 
-                    if ($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->count()) {
-                        $addressHtml = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=address]')->html();
-
-                        $address = explode('<br>', $addressHtml);
-                        $doctorInfo['address'] = serialize($address);
+                    if ($doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->count()) {
+                        $email = $doctorCrawler->filter('.pf-itempage-sidebarinfo-elurl span[itemprop=email]')->text();
                     } else {
-                        $doctorInfo['address'] = 'test';
+                        $email = 'no@doctoubib.com';
+                    }
+
+                    $doctor->setEmail($email);
+
+                    if ($doctorCrawler->filter('span[itemprop="streetAddress"]')->count()) {
+                        $address = $doctorCrawler->filter('span[itemprop="streetAddress"]')->text();
+                        $doctor->setAdress($address);
+                    }
+
+                    if ($doctorCrawler->filter('span[itemprop="addressRegion"]')->count()) {
+                        $regionName = $doctorCrawler->filter('span[itemprop="addressRegion"]')->text();
+                        $region = $em->getRepository('DoctoubibModelsBundle:Region')->findOneByName($regionName);
+                        $doctor->setRegion($region);
+                    }
+
+                    if ($doctorCrawler->filter('span[itemprop="addressLocality"]')->count()) {
+                        $cityName = $doctorCrawler->filter('span[itemprop="addressLocality"]')->text();
+                        $city = $em->getRepository('DoctoubibModelsBundle:City')->findOneByName($cityName);
+                        $doctor->setCity($city);
+                    }
+
+                    if ($doctorCrawler->filter('meta[itemprop="latitude"]')->count()) {
+                        $doctorInfo['latitude'] = $doctorCrawler->filter('meta[itemprop="latitude"]')->text();
+                    }
+
+                    if ($doctorCrawler->filter('meta[itemprop="longitude"]')->count()) {
+                        $doctorInfo['longitude'] = $doctorCrawler->filter('meta[itemprop="longitude"]')->text();
                     }
 
                     if ($doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->count()) {
                         $descriptionHtml = $doctorCrawler->filter('.pfdetailitem-subelement.pf-onlyitem > p')->html();
-
                         $description = explode('<br>', $descriptionHtml);
 
-                        $doctorInfo['description'] = serialize($description);
+                        $description = serialize($description);
+                        $doctor->setDescription($description);
                     }
 
-                    var_dump($doctorInfo['description'] );die();
-                    $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-                    $doctor = new Doctor();
                     $speciality = $em->getRepository('DoctoubibModelsBundle:Speciality')->find(3);
-                    $region = $em->getRepository('DoctoubibModelsBundle:Region')->find(1);
-                    $doctor->setFirstname($doctorInfo['name']);
-                    $doctor->setLastname($doctorInfo['name']);
-                    $doctor->setCivility('M');
+
                     $doctor->setInsurance(true);
                     $doctor->setConsultationPriceMin(35);
-                    $doctor->setEmail($doctorInfo['email']);
-                    $doctor->setAdress($doctorInfo['address']);
-                    $doctor->setRegion($region);
-                    $doctor->setCity();
-                    $doctor->setPhoneNumber($doctorInfo['telephone']);
                     $doctor->addSpeciality($speciality);
 
                     $em->persist($doctor);
