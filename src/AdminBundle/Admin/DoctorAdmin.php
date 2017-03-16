@@ -29,7 +29,7 @@ class DoctorAdmin extends AbstractAdmin
             ->end()
 
             ->with('Informations professionelle', array('class' => 'col-md-4'))
-            ->add('specialities', 'choice')
+            ->add('specialities', 'sonata_type_model')
             ->add('formation')
             ->add('skills')
             ->add('hospitalCareer')
