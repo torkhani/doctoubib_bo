@@ -22,6 +22,12 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new AdminBundle\AdminBundle(),
         ];
 

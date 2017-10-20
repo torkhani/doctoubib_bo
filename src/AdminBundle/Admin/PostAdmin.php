@@ -14,7 +14,8 @@ class PostAdmin extends AbstractAdmin
         $formMapper->add('parent');
         $formMapper->add('categories');
         $formMapper->add('title', 'text');
-        $formMapper->add('text');
+        $formMapper->add('text', 'textarea', array('attr' => array('class' => 'ckeditor')));
+
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
