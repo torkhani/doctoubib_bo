@@ -158,5 +158,5 @@ sonata_media:
 
     filesystem:
         local:
-            directory:  "%kernel.root_dir%/../web/uploads/media"
+            directory:  "%kernel.root_dir%/../../Doctoubib/web/uploads/media"
             create:     false
