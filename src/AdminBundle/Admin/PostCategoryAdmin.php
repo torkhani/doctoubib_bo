@@ -16,6 +16,7 @@ class PostCategoryAdmin extends AbstractAdmin
         $formMapper->add('description');
         $formMapper->add('metaTitle');
         $formMapper->add('metaDescription');
+        $formMapper->add('image', 'sonata_type_model_list', array(), array('link_parameters' => array('context' => 'default')));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
