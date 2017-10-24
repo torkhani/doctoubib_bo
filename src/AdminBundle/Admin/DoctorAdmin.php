@@ -4,6 +4,7 @@
 namespace AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -32,20 +33,13 @@ class DoctorAdmin extends AbstractAdmin
             ->add('specialities', 'sonata_type_model', array(
             'multiple' => true,
             ))
-            ->add('formation')
-            ->add('skills')
-            ->add('hospitalCareer')
+            ->add('formations')
+            ->add('experiences')
+            ->add('publications')
             ->end()
 
             ->with('Informations d\'accès', array('class' => 'col-md-4'))
-                ->add('adress')
-                ->add('zipcode')
-                ->add('region')
-                ->add('city')
-                ->add('longitude')
-                ->add('latitude')
                 ->add('phoneNumber')
-                ->add('officePhoneNumber')
             ->end()
 
             ->with('Autres informations', array('class' => 'col-md-4'))
@@ -53,9 +47,10 @@ class DoctorAdmin extends AbstractAdmin
             ->end()
 
             ->with('Consutation', array('class' => 'col-md-4'))
-            //->add('consultations', 'sonata_type_model')
-            ->add('consultationPriceMin')
-            ->add('consultationPriceMax')
+            ->add('consultations')
+            ->add('offices', 'sonata_type_collection', array(
+                'by_reference' => false
+            ))
             ->end()
         ;
 
@@ -66,8 +61,6 @@ class DoctorAdmin extends AbstractAdmin
         $datagridMapper->add('firstname');
         $datagridMapper->add('specialities');
         $datagridMapper->add('insurance');
-        $datagridMapper->add('city');
-        $datagridMapper->add('zipcode');
 
     }
 
@@ -77,8 +70,6 @@ class DoctorAdmin extends AbstractAdmin
         $listMapper->addIdentifier('lastname');
         $listMapper->addIdentifier('email');
         $listMapper->addIdentifier('specialities');
-        $listMapper->addIdentifier('city');
-        $listMapper->addIdentifier('zipCode');
         $listMapper->add('insurance');
     }
 }

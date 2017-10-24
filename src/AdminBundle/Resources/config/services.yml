@@ -4,6 +4,11 @@ services:
         arguments: [~, Doctoubib\ModelsBundle\Entity\Doctor, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Doctor, group: Praticien }
+    admin.doctor.office:
+        class: AdminBundle\Admin\OfficeAdmin
+        arguments: [~, Doctoubib\ModelsBundle\Entity\Office, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Offices, group: Praticien }
     admin.doctor.speciality:
         class: AdminBundle\Admin\SpecialityAdmin
         arguments: [~, Doctoubib\ModelsBundle\Entity\Speciality, ~]
